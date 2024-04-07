@@ -1,5 +1,5 @@
 [
     { "type": "Coach", "capacity": 50 },
     { "type": "Minibus", "capacity": 20 },
-    { "type": "Double Decker", "capacity": 80 }
+    { "type": "Double Decker", "capacity": 79 }
 ]
