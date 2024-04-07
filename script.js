@@ -1,21 +1,28 @@
-// Sample fleet data (can be fetched from a server)
-const fleetData = [
-    { type: "Coach", capacity: 50 },
-    { type: "Minibus", capacity: 20 },
-    { type: "Double Decker", capacity: 80 }
-];
+// Function to fetch fleet data from an external source (JSON file, API, etc.)
+async function fetchFleetData() {
+    try {
+        const response = await fetch('fleet.json'); // Replace 'fleet.json' with the URL of your fleet data source
+        if (!response.ok) {
+            throw new Error('Failed to fetch fleet data');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 // Function to display fleet data
-function displayFleet() {
+async function displayFleet() {
     const fleetList = document.getElementById('fleet-list');
     fleetList.innerHTML = '';
+    const fleetData = await fetchFleetData();
     fleetData.forEach(bus => {
         const listItem = document.createElement('div');
         listItem.innerHTML = `<p>${bus.type} - Capacity: ${bus.capacity}</p>`;
         fleetList.appendChild(listItem);
     });
 }
-
 // Call function to display fleet on page load
 window.onload = displayFleet;
 
